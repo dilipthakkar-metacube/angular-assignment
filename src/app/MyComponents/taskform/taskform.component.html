@@ -1,0 +1,94 @@
+<div
+  class="modal modal-background"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: isOpen ? 'block' : 'none' }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <button type="button" class="close btn" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
+          <span aria-hidden="true" class="fs-3">&times;</span>
+        </button>
+        <div class="d-flex flex-column p-5">
+          <div class="flex-column d-flex my-2">
+            <label> Name: </label>
+            <input formControlName="name" />
+            <div
+              class="error"
+              *ngIf="
+                myForm.get('name')?.invalid &&
+                (myForm.get('name')?.dirty || myForm.get('name')?.touched)
+              "
+            >
+              Please provide a name.
+            </div>
+          </div>
+
+          <div class="flex-column d-flex my-2">
+            <label> Description: </label>
+            <input formControlName="description" />
+
+            <div
+              class="error"
+              *ngIf="
+                myForm.get('description')?.invalid &&
+                (myForm.get('description')?.dirty ||
+                  myForm.get('description')?.touched)
+              "
+            >
+              Please provide a Description.
+            </div>
+          </div>
+          <div class="flex-column d-flex my-2">
+            <label> status: </label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              formControlName="status"
+            >
+              <option value="new">New</option>
+              <option value="progress">In progress</option>
+
+              <option value="completed">Completed</option>
+            </select>
+            <div
+              class="error"
+              *ngIf="
+                myForm.get('status')?.invalid &&
+                (myForm.get('status')?.dirty || myForm.get('status')?.touched)
+              "
+            >
+              Please select a Status.
+            </div>
+          </div>
+          <div class="flex-column d-flex my-2">
+            <label> priority: </label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              formControlName="priority"
+            >
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+
+            <div
+              class="error"
+              *ngIf="
+                myForm.get('priority')?.invalid &&
+                (myForm.get('priority')?.dirty ||
+                  myForm.get('priority')?.touched)
+              "
+            >
+              Please Select a priority.
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

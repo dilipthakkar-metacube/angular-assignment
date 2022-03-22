@@ -1,0 +1,46 @@
+<div class="card" style="min-width: 250px">
+  <div
+    [ngStyle]="{
+      'background-color':
+        task.priority == 'high'
+          ? 'rgb(255, 0, 0 , 0.50)'
+          : task.priority == 'medium'
+          ? '#ffa50090'
+          : '#00800090'
+    }"
+  >
+    <ul class="list-unstyled p-2 task-card">
+      <li><span class="fw-bold">Name: </span>{{ task.name }}</li>
+      <li><span class="fw-bold">Desc: </span>{{ task.description }}</li>
+      <li><span class="fw-bold">Priority: </span>{{ task.priority }}</li>
+      <li><span class="fw-bold">Status: </span>{{ task.status }}</li>
+      <li>
+        <span class="fw-bold">Start Date: </span
+        >{{ task.startDate.getDate() }}-{{ task.startDate.getMonth() }}-{{
+          task.startDate.getFullYear()
+        }}
+      </li>
+      <li *ngIf="task.endDate">
+        <span class="fw-bold">End Date: </span>{{ task.endDate.getDate() }}-{{
+          task.endDate.getMonth()
+        }}-{{ task.endDate.getFullYear() }}
+      </li>
+    </ul>
+  </div>
+  <div class="mt-2 p-2">
+    <button
+      class="btn btn-danger"
+      (click)="deleteTask()"
+      *ngIf="task.status != 'completed'"
+    >
+      DELETE
+    </button>
+    <button
+      class="btn btn-primary ms-5"
+      (click)="updateTask()"
+      *ngIf="task.status != 'completed'"
+    >
+      UPDATE
+    </button>
+  </div>
+</div>
